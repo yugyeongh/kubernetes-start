@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-every-minute
+spec:
+  schedule: "*/1 * * * *"  #1분마다 cronjob 실행
+  successfulJobsHistoryLimit: 5  #성공한 job 기록을 최대 5개를 남김
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: hello
+            image: ubuntu:focal
+            command: ["sh", "-c", "echo Hello $(date)!"]

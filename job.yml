@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: hello
+        image: ubuntu:focal
+        command: ["sh", "-c", "echo Hello World!"] #Hello World! 문자열을 출력하도록 함

@@ -1,0 +1,16 @@
+#job.yml과 다르게 competions와 parallelism 옵션 추가
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello
+spec:
+  completions: 10  # job을 몇 번 성공시킬지
+  parallelism: 2  # 최대 동시 실행 횟수 지정 
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: hello
+        image: ubuntu:focal
+        command: ["sh", "-c", "sleep 2; echo Hello World!"]
